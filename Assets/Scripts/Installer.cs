@@ -1,3 +1,4 @@
+using StatefulUI.Runtime.Core;
 using UnityEngine;
 
 public class Installer : MonoBehaviour
@@ -6,8 +7,9 @@ public class Installer : MonoBehaviour
 
     private void Start()
     {
-        var view = Instantiate(playScreenPrefab).GetComponent<PlayScreen>();
-        var presenter = new PlayPresenter(view); 
+        var screen = StatefulUiManager.Instance.InstantiatePrefab(playScreenPrefab);
+        var view = screen.GetComponent<PlayScreen>();
+        var presenter = new PlayPresenter(view);
         presenter.OnOpen();
     }
 }
